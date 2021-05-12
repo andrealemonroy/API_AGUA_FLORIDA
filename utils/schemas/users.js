@@ -7,7 +7,7 @@ const userLocationSchema = joi.object({value: joi.string(), address: joi.string(
   lng: joi.number().min(-180).max(180)})});
 const userRoleSchema = joi.array().items(joi.string().max(50)).max(5);
 const userEmailSchema = joi.string().email();
-const userProjectsSchema = joi.array().items(joi.string().max(50)).max(10);
+const userProjectsSchema = joi.string().max(50);
 const userSocialNetworksSchema = joi.object({facebook: joi.string().allow('').max(80).optional(), spotify: joi.string().allow('').max(80).optional(), instagram: joi.string().allow('').max(80).optional(), youtube: joi.string().allow('').max(80).optional(), bandcamp: joi.string().allow('').max(80).optional()});
 const userPhotoSchema = joi.string().uri().allow('')
 const userTermsAndConditions = joi.boolean()
