@@ -3,10 +3,8 @@ const joi = require('@hapi/joi');
 const userIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 const userFullNameSchema = joi.string().max(80);
 const artisticNameSchema = joi.string().max(80);
-const userLocationSchema = joi.object({value: joi.string(), address: joi.string(), coodinates: joi.array().ordered(
-  joi.number().min(-90).max(90),
-  joi.number().min(-180).max(180),
-)});
+const userLocationSchema = joi.object({value: joi.string(), address: joi.string(), coordinates: joi.object({lat: joi.number().min(-90).max(90),
+  lng: joi.number().min(-180).max(180)})});
 const userRoleSchema = joi.array().items(joi.string().max(50)).max(5);
 const userEmailSchema = joi.string().email();
 const userProjectsSchema = joi.array().items(joi.string().max(50)).max(10);
