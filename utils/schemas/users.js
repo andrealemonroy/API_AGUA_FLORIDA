@@ -9,7 +9,7 @@ const userRoleSchema = joi.array().items(joi.string().max(50)).max(5);
 const userEmailSchema = joi.string().email();
 const userProjectsSchema = joi.array().items(joi.string().max(50)).max(10);
 const userSocialNetworksSchema = joi.object({facebook: joi.string().allow('').max(80).optional(), spotify: joi.string().allow('').max(80).optional(), instagram: joi.string().allow('').max(80).optional(), youtube: joi.string().allow('').max(80).optional(), bandcamp: joi.string().allow('').max(80).optional()});
-const userPhotoSchema = joi.string().uri()
+const userPhotoSchema = joi.string().uri().allow('')
 const userTermsAndConditions = joi.boolean()
 const createUserSchema = {
   fullName: userFullNameSchema.required(),
