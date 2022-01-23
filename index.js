@@ -1,7 +1,6 @@
 const cors = require('cors');
 const express = require('express');
 const app = express();
-app.use(cors());
 const { config } = require('./config/index');
 const usersApi = require('./routes/users.js');
 const bandsApi = require('./routes/bands.js');
@@ -26,6 +25,7 @@ app.use(notFoundHandler);
 app.use(logErrors);
 app.use(wrapError);
 app.use(errorHandlers);
+app.use(cors());
 
 app.listen(config.port, function() {
   console.log(`Listening http://localhost:${config.port}`);

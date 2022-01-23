@@ -8,7 +8,7 @@ const bandMemberSchema = joi.array().items(joi.string().max(50)).max(5);
 const bandEmailSchema = joi.string().email(); 
 const bandGenresSchema = joi.string().max(50);
 const bandSocialNetworksSchema = joi.object({facebook: joi.string().allow('').max(80).optional(), spotify: joi.string().allow('').max(80).optional(), instagram: joi.string().allow('').max(80).optional(), youtube: joi.string().allow('').max(80).optional(), bandcamp: joi.string().allow('').max(80).optional()}); 
-const userPhotoSchema = joi.string().dataUri().allow('')
+const bandPhotoSchema = joi.string().dataUri().allow('')
 const bandTermsAndConditions = joi.boolean()
 const createBandSchema = {
   bandsName: bandsNameSchema.required(),
