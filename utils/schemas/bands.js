@@ -6,7 +6,7 @@ const bandLocationSchema = joi.object({value: joi.string(), address: joi.string(
   lng: joi.number().min(-180).max(180)})});
 const bandMemberSchema = joi.array().items(joi.string().max(50)).max(5); 
 const bandEmailSchema = joi.string().email(); 
-const bandGenresSchema = joi.string().max(50);
+const bandGenresSchema = joi.array().items(joi.string().max(50)).max(5); 
 const bandSocialNetworksSchema = joi.object({facebook: joi.string().allow('').max(80).optional(), spotify: joi.string().allow('').max(80).optional(), instagram: joi.string().allow('').max(80).optional(), youtube: joi.string().allow('').max(80).optional(), bandcamp: joi.string().allow('').max(80).optional()}); 
 const bandPhotoSchema = joi.string().dataUri().allow('')
 const bandTermsAndConditions = joi.boolean()
