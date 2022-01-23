@@ -1,10 +1,10 @@
 const express = require('express');
-const BandsService = require('../services/bands'); //UsersService
+const BandsService = require('../services/bands'); 
 
 const {
-  bandIdSchema, //userIdSchema
-  createBandSchema, // createUserSchema
-  updateBandSchema, // updateUserSchema
+  bandIdSchema, 
+  createBandSchema, 
+  updateBandSchema, 
 } = require('../utils/schemas/bands');
 
 const validationHandler = require('../utils/middleware/validationHandler');
@@ -20,7 +20,7 @@ function bandsApi(app) {
     const { tags } = req.query;
 
     try {
-      const bands = await bandsService.getBands({ tags }); //getUsers
+      const bands = await bandsService.getBands({ tags }); 
 
       res.status(200).json({
         data: bands,

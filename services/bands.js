@@ -33,7 +33,7 @@ class BandsService {
 
   async deleteBand({ bandId }) {
     const deletedBandId = await this.mongoDB.delete(this.collection, bandId);
-    return deletedBnandId;
+    return deletedBandId;
   }
 }
 
