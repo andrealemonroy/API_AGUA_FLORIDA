@@ -1,5 +1,5 @@
 const boom = require('@hapi/boom')
-const joi = require('@hapi/joi')
+const joi = require('joi')
 const validate = (data, schema) => {
     const { error } = joi.object(schema).validate(data)
     return error

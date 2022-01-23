@@ -1,4 +1,4 @@
-const joi = require('@hapi/joi');
+const joi = require('joi');
 
 const userIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 const userFullNameSchema = joi.string().max(80);
@@ -9,7 +9,7 @@ const userRoleSchema = joi.array().items(joi.string().max(50)).max(5);
 const userEmailSchema = joi.string().email();
 const userProjectsSchema = joi.string().max(50);
 const userSocialNetworksSchema = joi.object({facebook: joi.string().allow('').max(80).optional(), spotify: joi.string().allow('').max(80).optional(), instagram: joi.string().allow('').max(80).optional(), youtube: joi.string().allow('').max(80).optional(), bandcamp: joi.string().allow('').max(80).optional()});
-const userPhotoSchema = joi.string().uri().allow('')
+const userPhotoSchema = joi.string().dataUri().allow('')
 const userTermsAndConditions = joi.boolean()
 const createUserSchema = {
   fullName: userFullNameSchema.required(),
