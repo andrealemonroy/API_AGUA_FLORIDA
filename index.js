@@ -27,8 +27,10 @@ app.use(wrapError);
 app.use(errorHandlers);
 // app.use(cors());
 function setupCORS(req, res, next) {
-  res.header('Access-Control-Allow-Headers', 'GET,PUT,POST,DELETE,OPTIONS,Content-Type');
-  res.header('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   if (req.method === 'OPTIONS') {
       res.status(200).end();
   } else {
