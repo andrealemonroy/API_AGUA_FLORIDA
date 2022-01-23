@@ -27,8 +27,7 @@ app.use(wrapError);
 app.use(errorHandlers);
 // app.use(cors());
 function setupCORS(req, res, next) {
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-type,Accept,X-Access-Token,X-Key');
+  res.header('Access-Control-Allow-Headers', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Origin', '*');
   if (req.method === 'OPTIONS') {
       res.status(200).end();
