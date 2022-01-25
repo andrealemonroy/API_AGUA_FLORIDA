@@ -62,10 +62,8 @@ function usersApi(app) {
           message: 'user created',
         });
       } catch (err) {
-        res.status(500).json({
-          data: err,
-          message: 'error',
-        });
+        console.log(err)
+        next(err);
       }
     }
   );
