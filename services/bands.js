@@ -17,6 +17,11 @@ class BandsService {
     return band || {};
   }
 
+  async getBandsByLatLng({ location }) {
+    const latLngBands = await this.mongoDB.get(this.collection, location);
+    return latLngBands || {};
+  }
+
   async createBand({ band }) {
     const createBandId = await this.mongoDB.create(this.collection, band);
     return createBandId;
@@ -34,6 +39,13 @@ class BandsService {
   async deleteBand({ bandId }) {
     const deletedBandId = await this.mongoDB.delete(this.collection, bandId);
     return deletedBandId;
+  }
+
+  async getLengthBands({ tags }) {
+    const query = tags && { tags: { $in: tags } };
+    const bands = await this.mongoDB.getAll(this.collection, query);
+    const lengthBands = bands.length;
+    return lengthBands || -1;
   }
 }
 

@@ -30,6 +30,21 @@ function usersApi(app) {
     }
   });
 
+  router.get('/length', async function (req, res, next) {
+    const { tags } = req.query;
+
+    try {
+      const length = await usersService.getLengthUsers({ tags });
+
+      res.status(200).json({
+        data: length,
+        message: 'length of users',
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
+
   router.get(
     '/:userId',
     validationHandler({ userId: userIdSchema }, 'params'),
@@ -42,6 +57,26 @@ function usersApi(app) {
         res.status(200).json({
           data: users,
           message: 'user retrieved',
+        });
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+
+
+  router.get(
+    '/:location',
+    validationHandler({ location: userLocationSchema  }, 'params'),
+    async function (req, res, next) {
+      const { location } = req.params;
+
+      try {
+        const users = await usersService.getUsersByLatLng({ location });
+        console.log(location);
+        res.status(200).json({
+          data: users,
+          message: 'users in location',
         });
       } catch (err) {
         next(err);

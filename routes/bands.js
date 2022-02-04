@@ -10,7 +10,7 @@ const {
 const validationHandler = require('../utils/middleware/validationHandler');
 
 function bandsApi(app) {
-  console.log('sdaj')
+ 
   const router = express.Router();
   app.use('/api/bands', router);
 
@@ -31,6 +31,21 @@ function bandsApi(app) {
     }
   });
 
+  router.get('/length', async function (req, res, next) {
+    const { tags } = req.query;
+
+    try {
+      const length = await bandsService.getLengthBands({ tags });
+
+      res.status(200).json({
+        data: length,
+        message: 'length of bands',
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
+
   router.get(
     '/:bandId',
     validationHandler({ bandId: bandIdSchema }, 'params'),
@@ -43,6 +58,26 @@ function bandsApi(app) {
         res.status(200).json({
           data: bands,
           message: 'band retrieved',
+        });
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+
+
+  router.get(
+    '/:location',
+    validationHandler({ location: bandLocationSchema }, 'params'),
+    async function (req, res, next) {
+      const { location } = req.params;
+
+      try {
+        const bands = await bandsService.getBandsByLatLng({ location });
+        console.log(location);
+        res.status(200).json({
+          data: bands,
+          message: 'bands in location',
         });
       } catch (err) {
         next(err);
