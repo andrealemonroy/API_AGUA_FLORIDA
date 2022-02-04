@@ -5,6 +5,7 @@ const {
   userIdSchema,
   createUserSchema,
   updateUserSchema,
+  userLocationSchema
 } = require('../utils/schemas/users');
 
 const validationHandler = require('../utils/middleware/validationHandler');
@@ -65,20 +66,39 @@ function usersApi(app) {
   );
 
 
-  router.get(
-    '/:location',
-    validationHandler({ location: userLocationSchema  }, 'params'),
-    async function (req, res, next) {
-      const { location } = req.params;
+  // router.get(
+  //   '/:location',
+  //   validationHandler({ location: userLocationSchema  }, 'params'),
+  //   async function (req, res, next) {
+  //     const { location } = req.params;
 
+  //     try {
+  //       const users = await usersService.getUsersByLatLng({ location });
+  //       console.log(location);
+  //       res.status(200).json({
+  //         data: users,
+  //         message: 'users in location',
+  //       });
+  //     } catch (err) {
+  //       next(err);
+  //     }
+  //   }
+  // );
+
+  router.post(
+    '/location',
+    // validationHandler(createBandSchema),
+    async function (req, res, next) {
+      const { body: location } = req;
       try {
         const users = await usersService.getUsersByLatLng({ location });
-        console.log(location);
-        res.status(200).json({
+
+        res.status(201).json({
           data: users,
-          message: 'users in location',
+          message: 'bands in location',
         });
       } catch (err) {
+        console.log(err)
         next(err);
       }
     }

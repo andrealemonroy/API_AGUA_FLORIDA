@@ -36,4 +36,5 @@ module.exports = {
   bandIdSchema,
   createBandSchema,
   updateBandSchema,
+  bandLocationSchema
 };

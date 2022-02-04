@@ -5,6 +5,7 @@ const {
   bandIdSchema, 
   createBandSchema, 
   updateBandSchema, 
+  bandLocationSchema
 } = require('../utils/schemas/bands');
 
 const validationHandler = require('../utils/middleware/validationHandler');
@@ -66,24 +67,46 @@ function bandsApi(app) {
   );
 
 
-  router.get(
-    '/:location',
-    validationHandler({ location: bandLocationSchema }, 'params'),
-    async function (req, res, next) {
-      const { location } = req.params;
+  // router.get(
+  //   '/:location',
+  //   validationHandler({ location: bandLocationSchema }, 'params'),
+  //   async function (req, res, next) {
+  //     const { location } = req.params;
 
+  //     try {
+  //       const bands = await bandsService.getBandsByLatLng({ location });
+  //       console.log(location);
+  //       res.status(200).json({
+  //         data: bands,
+  //         message: 'bands in location',
+  //       });
+  //     } catch (err) {
+  //       next(err);
+  //     }
+  //   }
+  // );
+
+
+  router.post(
+    '/location',
+    // validationHandler(createBandSchema),
+    async function (req, res, next) {
+      const { body: location } = req;
       try {
         const bands = await bandsService.getBandsByLatLng({ location });
-        console.log(location);
-        res.status(200).json({
+
+        res.status(201).json({
           data: bands,
           message: 'bands in location',
         });
       } catch (err) {
+        console.log(err)
         next(err);
       }
     }
   );
+
+
 
   router.post(
     '/',

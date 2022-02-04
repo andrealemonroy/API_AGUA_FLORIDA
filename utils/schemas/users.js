@@ -39,4 +39,5 @@ module.exports = {
   userIdSchema,
   createUserSchema,
   updateUserSchema,
+  userLocationSchema
 };
