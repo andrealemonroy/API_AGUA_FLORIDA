@@ -13,13 +13,15 @@ const {
   wrapError
 } = require('./utils/middleware/errorHandlers.js');
 
-const notFoundHandler = require('./utils/middleware/notFoundHandler')
+const notFoundHandler = require('./utils/middleware/notFoundHandler');
+const totalApi = require('./routes/total');
 
 // body parser
 app.use(express.json({limit:'50mb'}));
 
 usersApi(app);
 bandsApi(app);
+totalApi(app)
 app.use(notFoundHandler);
 
 app.use(logErrors);
