@@ -8,7 +8,7 @@ async function totalApi(app) {
   router.get('/', async function (req, res, next) {
     try {
       const total = await totalService.getTotal()
-      res.status(200).json({
+      res.status(200).json({ 
         total: total,
       });
     } catch (err) {
