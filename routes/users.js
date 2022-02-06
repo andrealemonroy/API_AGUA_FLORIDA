@@ -54,7 +54,6 @@ function usersApi(app) {
 
       try {
         const users = await usersService.getUser({ userId });
-        console.log(userId);
         res.status(200).json({
           data: users,
           message: 'user retrieved',
@@ -98,7 +97,6 @@ function usersApi(app) {
           message: 'bands in location',
         });
       } catch (err) {
-        console.log(err)
         next(err);
       }
     }
@@ -117,7 +115,6 @@ function usersApi(app) {
           message: 'user created',
         });
       } catch (err) {
-        console.log(err)
         next(err);
       }
     }

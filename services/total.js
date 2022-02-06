@@ -18,18 +18,40 @@ class TotalService {
   }
 
   async getTotal() {
-    let arr = {}
+    let arr = {};
     let users;
     let bands;
     await this.mongoDB.getAll('users').then((res) => {
-      users =res
+      users = res;
     });
     await this.mongoDB.getAll('bands').then((res) => {
-      bands =res
+      bands = res;
     });
     arr.users = users;
-    arr.bands = bands
+    arr.bands = bands;
     return arr;
+  }
+
+  async getLocation() {
+    let locations = [];
+    await this.mongoDB.getDocumentsLocation('users').then((res) => {
+      locations.push(res);
+    });
+    await this.mongoDB.getDocumentsLocation('bands').then((res) => {
+      locations.push(res);
+    });
+    return locations;
+  }
+
+  async getByLocation(location){
+    let totalsPerLocation = []
+    await this.mongoDB.getDocumentsByLocation('users', location).then((res) => {
+      totalsPerLocation.push(res)
+    })
+    await this.mongoDB.getDocumentsByLocation('bands', location).then((res) => {
+      totalsPerLocation.push(res)
+    })
+    return totalsPerLocation
   }
 }
 

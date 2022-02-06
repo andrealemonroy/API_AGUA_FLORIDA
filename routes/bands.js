@@ -55,7 +55,6 @@ function bandsApi(app) {
 
       try {
         const bands = await bandsService.getBand({ bandId });
-        console.log(bandId);
         res.status(200).json({
           data: bands,
           message: 'band retrieved',
@@ -100,7 +99,6 @@ function bandsApi(app) {
           message: 'bands in location',
         });
       } catch (err) {
-        console.log(err)
         next(err);
       }
     }
@@ -121,7 +119,6 @@ function bandsApi(app) {
           message: 'band created',
         });
       } catch (err) {
-        console.log(err)
         next(err);
       }
     }
