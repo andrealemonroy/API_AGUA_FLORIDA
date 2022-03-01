@@ -162,24 +162,6 @@ function usersApi(app) {
       }
     }
   );
-  router.deleteBand(
-    '/:bandId',
-    validationHandler({ bandId: bandIdSchema }, 'params'),
-    async function (req, res, next) {
-      const { bandId } = req.params;
-
-      try {
-        const deletedBandId = await usersService.deleteUser({ bandId });
-
-        res.status(200).json({
-          data: deletedBandId,
-          message: 'banda eleminada',
-        });
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
 }
 
 module.exports = usersApi;
